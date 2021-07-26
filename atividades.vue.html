@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Atividades curso de Férias</title>
+
+    <style>
+        .porta {
+            width: 150px;
+            height: 150px;
+            background-color: aquamarine;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- atividade 1 -->
+
+    <div class="row-md-3 d-flex justify-content-center mt-3">
+        <button class="btn btn-secondary" onclick="Atv1()"> Atividade 01 </button>
+    </div>
+
+    <!-- atividade 2 -->
+
+    <div class="row-md-3 d-flex justify-content-center mt-3">
+        <button class="btn btn-secondary" onclick="Atv2()"> Atividade 02 </button>
+    </div>
+
+    <!-- atividade 3 -->
+
+    <div class="row-md-3 d-flex justify-content-center mt-3">
+        <button class="btn btn-secondary" onclick="Atv3()"> Atividade 03 </button>
+    </div>
+
+    <!-- atividade 4 -->
+
+    <div class="row-md-3 d-flex justify-content-center mt-3">
+        <button class="btn btn-secondary" onclick="Atv4()"> Atividade 04 </button>
+    </div>
+
+    <!-- atividade 5 -->
+
+    <div class="row-md-3 d-flex justify-content-center mt-3">
+        <button class="btn btn-secondary" onclick="Atv5()"> Atividade 05 </button>
+    </div>
+
+    <!-- atividade 6 -->
+    <div class="row-md-3 d-flex justify-content-center mt-3">
+        <button class="btn btn-secondary" onclick="Atv6()"> Atividade 06 </button>
+    </div>
+    <div class="container" style="display: none;" id="atv6">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mb-3 mt-3">
+                    <label for="name" class="form-label">Informe um nome:</label>
+                    <input type="email" class="form-control" id="name">
+                </div>
+                <label for="listNames">qual substituir?</label>
+                <select id="listNames" class="form-select mb-3">
+                </select>
+            </div>
+            <div class="col-md-12">
+                <button id="button" class="btn btn-primary">Confirmar</button>
+            </div>
+            <div class="col-md-12">
+                <h3 class="mt-4 mb-3">Listagem de Itens</h3>
+                <ul class="list-group">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- atividade 7 -->
+    <div class="row-md3 d-flex justify-content-center mt-3">
+        <button class="btn btn-secondary" onclick="Atv7()"> Atividade 07 </button>
+    </div>
+    <div class="container" style="display: none" id="atv7">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="mt-3 d-flex flex-column align-items-center">
+                    <button id="1" onclick="getId(this)" class="porta">1</button>
+                    <div>==============</div>
+                    <button id="2" onclick="getId(this)" class="porta">2</button>
+                    <div>==============</div>
+                    <button id="3" onclick="getId(this)" class="porta">3</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- atividade 8 -->
+    <div class="row-md-3 d-flex justify-content-center mt-3">
+        <button class="btn btn-secondary" onclick="Atv8()"> Atividade 08 </button>
+    </div>
+    <div class="container" style="display: none;" id="atv8">
+        <div class="row">
+            <div id="cardFuncionarios" class="row mt-4"></div>
+        </div>
+    </div>
+
+    <!-- atividade 9  -->
+    <div class="row-md-3 d-flex justify-content-center mt-3">
+        <button class="btn btn-secondary" onclick="Atv9()"> Atividade 09 </button>
+    </div>
+    <div class="container" style="display: none;" id="atv9">
+        <div class="row">
+            <div class="col-md-12 mt-3">
+                <ol id="texts" class="list-group">
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- atividade 10 (inicio vue)-->
+
+    <div class="container" id="atv10">
+        <div class="row-md-3 d-flex justify-content-center mt-3">
+            <button class="btn btn-secondary" v-on:click="show = !show"> Atividade 10</button>
+        </div>
+        <div class="row-md-6" v-show="show">
+            <h1>Username</h1>
+            <div class="input-group mt-3 mb-3">
+                <input v-model="name" type="text" class="form-control" placeholder="Nome do Usuário">
+                <button @click="loadProfile" class="btn btn-success">Pesquisar</button>
+            </div>
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-2">
+                        <img :src="picture" class="img-fluid rounded-start">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ login }}</h5>
+                            <p class="card-text">Localização: {{ location !== null ? location : "Não Disponível" }}</a>
+                            </p>
+                            <p class="card-text">URL: <a :href="gitUrl">{{ gitUrl }}</a></p>
+                            <p class="card-text">Repositórios Públicos: </p>
+                            <div class="col-md-6">
+                                <div v-for="repositorie of repositories" class="card mb-3">
+                                    <h5 class="card-header">{{ repositorie.name }}</h5>
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ repositorie.description }}</h5>
+                                        <a :href="repositorie.gitUrl">{{ repositorie.gitUrl }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- atividade 11 -->
+
+    <div class="container" id="atv11">
+        <div class="row-md-3 d-flex justify-content-center mt-3">
+            <button class="btn btn-secondary" v-on:click="show = !show"> Atividade 11</button>
+        </div>
+        <div class="d-flex flex-row justify-content-center mt-3">
+            <div class="col-md-4" v-show="show">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <span class="fw-bold fs-5">{{title}}</span>
+                        <button class="btn btn-outline-danger" v-on:click="clearList()">Limpar</button>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{titleDesc}}</h5>
+                        <button class="btn rounded-pill mx-1 mb-3" v-for="hint of hints" v-bind:id="hint.id"
+                            v-bind:class="hint.select == false ? unselectedHint : selectedHint"
+                            v-on:click="followHint(hint.id)">
+                            <span class="ml-3">{{hint.name}}</span>
+                        </button>
+                    </div>
+                    <button type="button" class="btn btn-outline-danger" :disabled="isDisabled">Seguir Assuntos</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- atividade 12 -->
+
+    <div class="container" id="atv12">
+        <div class="row-md-3 d-flex justify-content-center">
+            <button class="btn btn-secondary" v-on:click="notice"> Atividade 12</button>
+        </div>
+
+
+    </div>
+
+
+    <script src="./atividades.js"></script>
+</body>
+
+</html>
